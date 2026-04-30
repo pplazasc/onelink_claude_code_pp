@@ -1,6 +1,6 @@
 <template>
   <li>
-    <nuxt-link :to="url" target="_blank" v-if="label && url">
+    <nuxt-link :to="sanitizeUrl(url)" target="_blank" rel="noopener noreferrer" v-if="label && url">
       <dt
         class="flex items-center space-x-2 p-1 -m-1 rounded-xl hover:bg-slate-100 bg-slate-50"
       >
@@ -20,6 +20,8 @@
   </li>
 </template>
 <script setup>
+import { sanitizeUrl } from "~/utils/transformer";
+
 const props = defineProps({
   label: {
     type: String,
